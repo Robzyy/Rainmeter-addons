@@ -4,3 +4,5 @@
 
 # Dependencies (and issues)
 The Polybar theme needs a custom version on the Iosevka font, which makes use of [Nerd Fonts](https://www.nerdfonts.com/). Make sure you have downloaded and installed the Iosevka Nerd Font
+Because of this, font options are quite limited
+This will be adressed in thr future... 
