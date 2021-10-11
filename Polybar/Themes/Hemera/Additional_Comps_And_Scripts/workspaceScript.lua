@@ -26,26 +26,49 @@ function Update()
 	end
 end
 
-timing = 0
-maxTime = 40
-function ChangeWorkspaceAnimation()
-	if timing > 0 and timing < maxTime then
-		timing = timing + 1
-		animation = outBack(timing,0,1,maxTime)
+-- timing = 0
+-- maxTime = 10
+-- function ChangeWorkspaceAnimation()
+-- 	if timing > 0 and timing < maxTime then
+-- 		timing = timing + 1
+-- 		animation = outBack(timing,0,1,maxTime)
 
-		slideAnimation = (oldCurrentWorkspace-1)*dotGap*2+(currentWorkspace-oldCurrentWorkspace)*dotGap*2*animation
-		if currentWorkspace <= maximumWorkspace then 
-			SKIN:Bang('[!ShowMeter WorkspaceCurrent]'
-					..'[!SetOPtion WorkspaceCurrent Shape "Rectangle '..slideAnimation..',#Section_Height#,(#Workspace_Number_Gap#*2),-5,3 | Extend Trait"][!UpdateMeter WorkspaceCurrent][!Redraw]')
-		else
-			SKIN:Bang('[!HideMeter WorkspaceCurrent]')
-		end
-	elseif timing == maxTime then
-		timing = 0
-		oldCurrentWorkspace = currentWorkspace
-		changingWorkspace = false
-		SKIN:Bang('!CommandMeasure WorkspaceActionTimer "Stop 1"')
+-- 		slideAnimation = (oldCurrentWorkspace-1)*dotGap*2+(currentWorkspace-oldCurrentWorkspace)*dotGap*2*animation
+-- 		if currentWorkspace <= maximumWorkspace then 
+-- 			SKIN:Bang('[!ShowMeter WorkspaceCurrent]'
+-- 					..'[!SetOPtion WorkspaceCurrent Shape "Rectangle '..slideAnimation..',#Section_Height#,(#Workspace_Number_Gap#*2),-5,3 | Extend Trait"][!UpdateMeter WorkspaceCurrent][!Redraw]')
+-- 		else
+-- 			SKIN:Bang('[!HideMeter WorkspaceCurrent]')
+-- 		end
+-- 	elseif timing == maxTime then
+-- 		timing = 0
+-- 		oldCurrentWorkspace = currentWorkspace
+-- 		changingWorkspace = false
+-- 		SKIN:Bang('!CommandMeasure WorkspaceActionTimer "Stop 1"')
+-- 	end
+-- end
+timing = 0
+maxTime = 10
+function ChangeWorkspaceAnimation()
+	-- if timing > 0 and timing < maxTime then
+	-- 	timing = timing + 1
+	-- 	animation = outBack(timing,0,1,maxTime)
+
+	-- 	slideAnimation = (oldCurrentWorkspace-1)*dotGap*2+(currentWorkspace-oldCurrentWorkspace)*dotGap*2*animation
+	if currentWorkspace <= maximumWorkspace then 
+		SKIN:Bang('[!ShowMeter WorkspaceCurrent]'
+				..'[!SetOPtion WorkspaceCurrent Shape "Rectangle ([Workspace1:W]*'..currentWorkspace..'-[Workspace1:W]),#Section_Height#,(#Workspace_Number_Gap#*2),-5,3 | Extend Trait"][!UpdateMeter WorkspaceCurrent][!Redraw]')
+	else
+		SKIN:Bang('[!HideMeter WorkspaceCurrent]')
 	end
+	oldCurrentWorkspace = currentWorkspace
+	changingWorkspace = false
+	-- elseif timing == maxTime then
+	-- 	timing = 0
+	-- 	oldCurrentWorkspace = currentWorkspace
+	-- 	changingWorkspace = false
+	-- 	SKIN:Bang('!CommandMeasure WorkspaceActionTimer "Stop 1"')
+	-- end
 end
 
 function outQuint(t, b, c, d)
